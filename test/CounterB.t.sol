@@ -10,8 +10,12 @@ contract ContractBTest is Test {
         testNumber = 42;
     }
 
+    function triggerUnderflow() public {
+        testNumber -= 43; // This causes a revert (underflow) on uint256
+    }
+
     function test_CannotSubtract43() public {
-    vm.expectRevert(stdError.arithmeticError);
-    testNumber -= 43;
-    } //Error: [FAIL: call didn't revert at a lower depth than cheatcode call depth]
+        vm.expectRevert(stdError.arithmeticError);
+        this.triggerUnderflow(); // ⬅️ VERY IMPORTANT: call via `this`
+    }
 }
