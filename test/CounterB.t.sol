@@ -10,7 +10,8 @@ contract ContractBTest is Test {
         testNumber = 42;
     }
 
-    function testFail_Subtract43() public {
-        testNumber -= 43;  // Not working as this has been removed from  solidity
-    }
+    function test_CannotSubtract43() public {
+    vm.expectRevert(stdError.arithmeticError);
+    testNumber -= 43;
+    } //Error: [FAIL: call didn't revert at a lower depth than cheatcode call depth]
 }
