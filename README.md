@@ -1,66 +1,95 @@
-## Foundry
+# Hello Foundry: Ethereum Smart Contract Suite
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+[![Sepolia Deployment](https://img.shields.io/badge/Deployed%20on-Sepolia-blue)](https://sepolia.etherscan.io/address/0x27f98b80df3d44662f5ebcba6817dc9610a07bfb)
 
-Foundry consists of:
+## Overview
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Hello Foundry is a robust, modular Ethereum smart contract project leveraging the [Foundry](https://book.getfoundry.sh/) development toolkit. This repository demonstrates best practices in Solidity development, testing, and deployment, featuring:
 
-## Documentation
+- **MyToken (AdityaToken, ADT):** An ERC20-compliant token contract built with [Solmate](https://github.com/transmissions11/solmate) for gas efficiency and security. [View deployed contract on Sepolia](https://sepolia.etherscan.io/address/0x27f98b80df3d44662f5ebcba6817dc9610a07bfb)
+- **Counter:** A simple, auditable contract for demonstration and testing purposes.
+- **Comprehensive Testing:** Includes fuzzing, revert checks, and edge case validation using Forge's advanced test suite.
 
-https://book.getfoundry.sh/
+## Key Contracts
 
-## Usage
+### MyToken (AdityaToken, ADT)
+- **Type:** ERC20 Token
+- **Features:**
+  - Customizable name, symbol, decimals, and initial supply
+  - Built on Solmate's gas-optimized ERC20 implementation
+  - Constructor arguments (example):
+    - Name: `AdityaToken`
+    - Symbol: `ADT`
+    - Decimals: `18`
+    - Initial Supply: `1,000,000 ADT`
+- **Deployment:** [Sepolia Testnet](https://sepolia.etherscan.io/address/0x27f98b80df3d44662f5ebcba6817dc9610a07bfb)
+
+### Counter
+- **Type:** Utility Contract
+- **Features:**
+  - Simple increment and set functionality
+  - Used for demonstrating test and deployment flows
+
+## Getting Started
+
+### Prerequisites
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) (Forge, Cast, Anvil)
+- Node.js (for some scripts)
 
 ### Build
-
-```shell
-$ forge build
+```sh
+forge build
 ```
 
 ### Test
-
-```shell
-$ forge test
+```sh
+forge test
 ```
 
 ### Format
-
-```shell
-$ forge fmt
+```sh
+forge fmt
 ```
 
 ### Gas Snapshots
-
-```shell
-$ forge snapshot
+```sh
+forge snapshot
 ```
 
-### Anvil
-
-```shell
-$ anvil
+### Local Node
+```sh
+anvil
 ```
 
-### Deploy
+## Deployment
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+### Deploy MyToken to Sepolia
+Example using Forge scripts:
+```sh
+forge script script/MyToken.sol:MyTokenScript --rpc-url <SEPOLIA_RPC_URL> --private-key <PRIVATE_KEY> --broadcast
 ```
 
-### Cast
-
-```shell
-$ cast <subcommand>
+Or deploy Counter:
+```sh
+forge script script/Counter.s.sol:CounterScript --rpc-url <SEPOLIA_RPC_URL> --private-key <PRIVATE_KEY> --broadcast
 ```
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+### Constructor Arguments for MyToken
 ```
+AdityaToken
+ADT
+18
+1000000000000000000000000
+```
+
+## Project Structure
+- `src/` — Core smart contracts
+- `script/` — Deployment and scripting logic
+- `test/` — Automated tests
+- `lib/` — External dependencies (Solmate, Forge Std)
+
+## Contributing
+Contributions, issues, and feature requests are welcome! Please open an issue or submit a pull request.
+
+## License
+This project is licensed under the MIT or Apache-2.0 license, as per the dependencies used.
